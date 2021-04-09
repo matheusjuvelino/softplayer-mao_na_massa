@@ -1,6 +1,6 @@
-﻿namespace Juros.Api
+﻿namespace TaxaDeJuros.Api
 {
-    public class JurosSettings
+    public class TaxaDeJurosSettings
     {
         public string TaxaBaseDeJuros { get; set; }
     }

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Juros.Api.Controllers;
+using TaxaDeJuros.Api.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
-using Juros.Api.Infrastructure.Filters;
+using TaxaDeJuros.Api.Infrastructure.Filters;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
 using GrpcJuros;
 
-namespace Juros.Api
+namespace TaxaDeJuros.Api
 {
     public class Startup
     {
@@ -41,7 +41,7 @@ namespace Juros.Api
                 options.Filters.Add(typeof(ValidateModelStateFilter));
 
             }) 
-            .AddApplicationPart(typeof(JurosController).Assembly)
+            .AddApplicationPart(typeof(TaxaDeJurosController).Assembly)
             .AddNewtonsoftJson();
 
             services.AddSwaggerGen(options =>
@@ -56,7 +56,7 @@ namespace Juros.Api
 
             services.AddCustomHealthCheck(Configuration);
 
-            services.Configure<JurosSettings>(Configuration);
+            services.Configure<TaxaDeJurosSettings>(Configuration);
 
 
             services.AddCors(options =>
@@ -102,7 +102,7 @@ namespace Juros.Api
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<JurosService>();
+                endpoints.MapGrpcService<TaxaDeJurosService>();
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
                 endpoints.MapGet("/_proto/", async ctx =>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Juros.Api.Controllers
+namespace TaxaDeJuros.Api.Controllers
 {
     public class HomeController : Controller
     {

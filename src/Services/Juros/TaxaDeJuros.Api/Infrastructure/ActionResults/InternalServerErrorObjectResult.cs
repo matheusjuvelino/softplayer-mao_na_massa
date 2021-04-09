@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Juros.Api.Infrastructure.ActionResults
+namespace TaxaDeJuros.Api.Infrastructure.ActionResults
 {
     public class InternalServerErrorObjectResult : ObjectResult
     {

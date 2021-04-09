@@ -1,4 +1,4 @@
-﻿namespace Juros.Api.Infrastructure.Filters
+﻿namespace TaxaDeJuros.Api.Infrastructure.Filters
 {
     public class JsonErrorResponse
     {

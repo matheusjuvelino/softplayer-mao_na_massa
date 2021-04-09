@@ -2,13 +2,13 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Juros.Api;
+using TaxaDeJuros.Api;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using System;
 using System.IO;
 using System.Net;
-using Juros.Api.Infrastructure.Middlewares;
+using TaxaDeJuros.Api.Infrastructure.Middlewares;
 
 var configuration = GetConfiguration();
 
