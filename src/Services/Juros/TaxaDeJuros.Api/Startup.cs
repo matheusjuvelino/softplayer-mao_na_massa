@@ -14,7 +14,7 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
-using GrpcJuros;
+using GrpcTaxaDeJuros;
 
 namespace TaxaDeJuros.Api
 {
@@ -48,9 +48,9 @@ namespace TaxaDeJuros.Api
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "softplayer mão na massa - Juros HTTP API",
+                    Title = "softplayer mão na massa - Taxa de Juros HTTP API",
                     Version = "v1",
-                    Description = "Serviço de Juros em HTTP API"
+                    Description = "Serviço para Taxa de Juros em HTTP API"
                 });
             });
 
@@ -90,9 +90,9 @@ namespace TaxaDeJuros.Api
             app.UseSwagger()
                .UseSwaggerUI(setup =>
                {
-                   setup.SwaggerEndpoint($"{ (!string.IsNullOrEmpty(pathBase) ? pathBase : string.Empty) }/swagger/v1/swagger.json", "Juros.Api V1");
-                   setup.OAuthClientId("jurosswaggerui");
-                   setup.OAuthAppName("Juros Swagger UI");
+                   setup.SwaggerEndpoint($"{ (!string.IsNullOrEmpty(pathBase) ? pathBase : string.Empty) }/swagger/v1/swagger.json", "TaxaDeJuros.Api V1");
+                   setup.OAuthClientId("taxadejurosswaggerui");
+                   setup.OAuthAppName("Taxa de Juros Swagger UI");
                });
 
             app.UseRouting();
@@ -108,7 +108,7 @@ namespace TaxaDeJuros.Api
                 endpoints.MapGet("/_proto/", async ctx =>
                 {
                     ctx.Response.ContentType = "text/plain";
-                    using var fs = new FileStream(Path.Combine(env.ContentRootPath, "Proto", "juros.proto"), FileMode.Open, FileAccess.Read);
+                    using var fs = new FileStream(Path.Combine(env.ContentRootPath, "Proto", "taxadejuros.proto"), FileMode.Open, FileAccess.Read);
                     using var sr = new StreamReader(fs);
                     while (!sr.EndOfStream)
                     {
