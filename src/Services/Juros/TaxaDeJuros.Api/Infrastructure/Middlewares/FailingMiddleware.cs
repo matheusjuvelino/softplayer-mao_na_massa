@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Juros.Api.Infrastructure.Middlewares
+namespace TaxaDeJuros.Api.Infrastructure.Middlewares
 {
     public class FailingMiddleware
     {

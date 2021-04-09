@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Juros.Api.Infrastructure.Middlewares
+namespace TaxaDeJuros.Api.Infrastructure.Middlewares
 {
     public class FailingOptions
     {

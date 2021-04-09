@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using System;
 
-namespace Juros.Api.Infrastructure.Middlewares
+namespace TaxaDeJuros.Api.Infrastructure.Middlewares
 {
     public class FailingStartupFilter : IStartupFilter
     {

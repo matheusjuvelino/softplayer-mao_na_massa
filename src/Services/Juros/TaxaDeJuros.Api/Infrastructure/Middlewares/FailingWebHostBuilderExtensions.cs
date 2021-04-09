@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Juros.Api.Infrastructure.Middlewares
+namespace TaxaDeJuros.Api.Infrastructure.Middlewares
 {
     public static class WebHostBuildertExtensions
     {

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Linq;
 
-namespace Juros.Api.Infrastructure.Filters
+namespace TaxaDeJuros.Api.Infrastructure.Filters
 {
     public class ValidateModelStateFilter : ActionFilterAttribute
     {

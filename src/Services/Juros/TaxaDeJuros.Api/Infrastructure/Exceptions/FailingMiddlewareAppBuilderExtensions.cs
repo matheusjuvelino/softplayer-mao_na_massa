@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using System;
 
-namespace Juros.Api.Infrastructure.Middlewares
+namespace TaxaDeJuros.Api.Infrastructure.Middlewares
 {
     public static class FailingMiddlewareAppBuilderExtensions
     {
