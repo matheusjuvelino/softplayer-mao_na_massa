@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Proto\taxadejuros.proto" />
+    <None Remove="Proto\calcularjuros.proto" />
   </ItemGroup>
 
   <ItemGroup>
