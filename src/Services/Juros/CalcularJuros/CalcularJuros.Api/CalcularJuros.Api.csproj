@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Proto\taxadejuros.proto" GrpcServices="Server" Generator="MSBuild:Compile" />
+    <Protobuf Include="Proto\calcularjuros.proto" GrpcServices="Server" Generator="MSBuild:Compile" />
     <Content Include="@(Protobuf)" />
     <None Remove="@(Protobuf)" />
   </ItemGroup>
