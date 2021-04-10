@@ -2,5 +2,6 @@
 {
     public class CalcularJurosSettings
     {
+        public string TaxaDeJurosUrl { get; set; }
     }
 }

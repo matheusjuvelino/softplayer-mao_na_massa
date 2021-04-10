@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using CalcularJuros.Api;
+using System.Threading.Tasks;
 using System.Net;
+using CalcularJuros.Api.Services;
+using System;
 
 namespace CalcularJuros.Api.Controllers
 {
@@ -9,10 +11,12 @@ namespace CalcularJuros.Api.Controllers
     [ApiController]
     public class CalcularJurosController : ControllerBase
     {
+        private readonly ITaxaDeJurosService _taxaDeJurosService;
         private readonly ILogger<CalcularJurosController> _logger;
 
-        public CalcularJurosController(ILogger<CalcularJurosController> logger)
+        public CalcularJurosController(ITaxaDeJurosService taxaDeJurosService, ILogger<CalcularJurosController> logger)
         {
+            _taxaDeJurosService = taxaDeJurosService ?? throw new ArgumentNullException(nameof(taxaDeJurosService));
             _logger = logger;
         }
 
@@ -21,7 +25,7 @@ namespace CalcularJuros.Api.Controllers
         [Route("")]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public ActionResult<string> Get([FromQuery] string valorinicial, [FromQuery] string meses)
+        public async Task<ActionResult<string>> GetAsync([FromQuery] string valorinicial, [FromQuery] string meses)
         {
             if (string.IsNullOrWhiteSpace(valorinicial))
             {
@@ -43,7 +47,9 @@ namespace CalcularJuros.Api.Controllers
                 return BadRequest("A quantidade de meses informada não é está num formato válido. Ex.: 5, 1 ou 10 ...");
             }
 
-            return JurosCompostos.Calcular(valorInicial, totalMeses, 0.01m).FormatarJurosCompostos();
+            var taxaDeJuros = await _taxaDeJurosService.ObterTaxaDeJuros();
+
+            return JurosCompostos.Calcular(valorInicial, totalMeses, taxaDeJuros).FormatarJurosCompostos();
         }
     }
 }
