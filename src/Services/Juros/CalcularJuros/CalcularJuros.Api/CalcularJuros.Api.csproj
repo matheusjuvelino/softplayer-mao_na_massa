@@ -13,10 +13,13 @@
 
   <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="5.0.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
-    <PackageReference Include="Google.Protobuf" Version="3.15.8" />
-    <PackageReference Include="Grpc.AspNetCore.Server" Version="2.36.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.37.0" PrivateAssets="All" />
+    <PackageReference Include="Google.Protobuf" Version="3.14.0" />
+    <PackageReference Include="Grpc.AspNetCore.Server.ClientFactory" Version="2.34.0" />
+    <PackageReference Include="Grpc.Core" Version="2.34.0" />
+    <PackageReference Include="Grpc.Net.ClientFactory" Version="2.34.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.34.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.HealthChecks" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.5" />
@@ -34,6 +37,10 @@
     <Protobuf Include="Proto\calcularjuros.proto" GrpcServices="Server" Generator="MSBuild:Compile" />
     <Content Include="@(Protobuf)" />
     <None Remove="@(Protobuf)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="../../TaxaDeJuros/TaxaDeJuros.Api/Proto/taxadejuros.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>
