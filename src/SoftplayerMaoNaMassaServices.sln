@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5C922058
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxaDeJuros.UnitTests", "Services\Juros\TaxaDeJuros.UnitTests\TaxaDeJuros.UnitTests.csproj", "{73215455-DF02-4929-BF7F-6BCF0BDC26DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxaDeJuros.FunctionalTests", "Services\Juros\TaxaDeJuros.FunctionalTests\TaxaDeJuros.FunctionalTests.csproj", "{21AF4A2C-14FC-4837-998C-2CBED930BDFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{73215455-DF02-4929-BF7F-6BCF0BDC26DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73215455-DF02-4929-BF7F-6BCF0BDC26DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73215455-DF02-4929-BF7F-6BCF0BDC26DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21AF4A2C-14FC-4837-998C-2CBED930BDFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21AF4A2C-14FC-4837-998C-2CBED930BDFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21AF4A2C-14FC-4837-998C-2CBED930BDFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21AF4A2C-14FC-4837-998C-2CBED930BDFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{293ECAEC-C5EE-48B2-A6C5-871780778CE9} = {137CD9E5-1B0F-4D10-AA99-E3C9C49AA4C7}
 		{5C922058-C11E-44B3-86EB-717469F0EFF8} = {137CD9E5-1B0F-4D10-AA99-E3C9C49AA4C7}
 		{73215455-DF02-4929-BF7F-6BCF0BDC26DF} = {5C922058-C11E-44B3-86EB-717469F0EFF8}
+		{21AF4A2C-14FC-4837-998C-2CBED930BDFD} = {5C922058-C11E-44B3-86EB-717469F0EFF8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32DCC1CC-F79D-4203-8A25-31CB5523C0E2}
