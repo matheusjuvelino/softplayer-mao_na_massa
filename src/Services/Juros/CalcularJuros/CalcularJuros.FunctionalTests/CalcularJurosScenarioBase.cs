@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System.IO;
 using System.Reflection;
-using CalcularJuros.Api;
 
 namespace CalcularJuros.FunctionalTests
 {
@@ -23,7 +22,7 @@ namespace CalcularJuros.FunctionalTests
                     cb.AddJsonFile("appsettings.json", optional: false)
                     .AddEnvironmentVariables();
                 })
-                .UseStartup<Startup>();
+                .UseStartup<CalcularJurosTestsStartup>();
 
 
             var testServer = new TestServer(hostBuilder);
