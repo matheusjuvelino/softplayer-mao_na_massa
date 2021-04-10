@@ -15,6 +15,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
 using GrpcCalcularJuros;
+using CalcularJuros.Api.Services;
+using Polly;
+using Polly.Extensions.Http;
+using System.Net.Http;
 
 namespace CalcularJuros.Api
 {
@@ -68,7 +72,11 @@ namespace CalcularJuros.Api
                     .AllowAnyHeader()
                     .AllowCredentials());
             });
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpClient<ITaxaDeJurosService, TaxaDeJurosService>()
+                .AddPolicyHandler(GetRetryPolicy())
+                .AddPolicyHandler(GetCircuitBreakerPolicy());
 
             services.AddOptions();
 
@@ -130,6 +138,17 @@ namespace CalcularJuros.Api
                 });
             });
         }
+
+        private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy() =>
+           HttpPolicyExtensions
+             .HandleTransientHttpError()
+             .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
+             .WaitAndRetryAsync(6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+
+        private static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy() =>
+            HttpPolicyExtensions
+                .HandleTransientHttpError()
+                .CircuitBreakerAsync(5, TimeSpan.FromSeconds(30));
     }
 
     public static class CustomExtensionMethods
