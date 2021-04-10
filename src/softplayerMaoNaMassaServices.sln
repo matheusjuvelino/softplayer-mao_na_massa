@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{71E34A8E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalcularJuros.UnitTests", "Services\Juros\CalcularJuros\CalcularJuros.UnitTests\CalcularJuros.UnitTests.csproj", "{4318D663-B895-4558-AC1F-0EC7560A12F2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalcularJuros.FunctionalTests", "Services\Juros\CalcularJuros\CalcularJuros.FunctionalTests\CalcularJuros.FunctionalTests.csproj", "{29127128-C065-4FCA-A063-9A475928C0CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{4318D663-B895-4558-AC1F-0EC7560A12F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4318D663-B895-4558-AC1F-0EC7560A12F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4318D663-B895-4558-AC1F-0EC7560A12F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29127128-C065-4FCA-A063-9A475928C0CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29127128-C065-4FCA-A063-9A475928C0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29127128-C065-4FCA-A063-9A475928C0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29127128-C065-4FCA-A063-9A475928C0CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{72BF050B-3B74-46A0-8E32-6F60F0815599} = {B2B9C8F7-68E7-4663-A4E1-BCAB7D27BC71}
 		{71E34A8E-D273-4256-BEAA-882765A7F807} = {B2B9C8F7-68E7-4663-A4E1-BCAB7D27BC71}
 		{4318D663-B895-4558-AC1F-0EC7560A12F2} = {71E34A8E-D273-4256-BEAA-882765A7F807}
+		{29127128-C065-4FCA-A063-9A475928C0CD} = {71E34A8E-D273-4256-BEAA-882765A7F807}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32DCC1CC-F79D-4203-8A25-31CB5523C0E2}
