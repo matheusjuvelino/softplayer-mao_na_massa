@@ -5,5 +5,11 @@ option csharp_namespace = "GrpcTaxaDeJuros";
 package TaxaDeJurosApi;
 
 service TaxaDeJuros {
+	rpc Obter(ObterTaxaDeJuros) returns (TaxaDeJurosResponse) {}
+}
 
+message ObterTaxaDeJuros {}
+
+message TaxaDeJurosResponse {
+	string valor = 1;
 }
