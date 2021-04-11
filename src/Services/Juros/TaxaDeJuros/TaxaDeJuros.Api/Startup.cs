@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Hosting;
+ï»¿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using TaxaDeJuros.Api.Controllers;
 using Microsoft.Extensions.Configuration;
@@ -30,47 +30,18 @@ namespace TaxaDeJuros.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public virtual IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddGrpc(options =>
-            {
-                options.EnableDetailedErrors = true;
-            });
-
-            services.AddControllers(options =>
-            {
-                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
-                options.Filters.Add(typeof(ValidateModelStateFilter));
-
-            }) 
-            .AddApplicationPart(typeof(TaxaDeJurosController).Assembly)
-            .AddNewtonsoftJson();
-
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1", new OpenApiInfo
+            services
+                .AddGrpc(options =>
                 {
-                    Title = "softplayer mão na massa - Taxa de Juros HTTP API",
-                    Version = "v1",
-                    Description = "Serviço para Taxa de Juros em HTTP API"
-                });
-            });
-
-            services.AddCustomHealthCheck(Configuration);
-
-            services.Configure<TaxaDeJurosSettings>(Configuration);
+                    options.EnableDetailedErrors = true;
+                }).Services
+                .AddCustomMVC(Configuration)
+                .AddCustomOptions(Configuration)
+                .AddSwagger(Configuration)
+                .AddCustomHealthCheck(Configuration);
 
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder
-                    .SetIsOriginAllowed((host) => true)
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
-            });
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddOptions();
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -91,18 +62,13 @@ namespace TaxaDeJuros.Api
                .UseSwaggerUI(setup =>
                {
                    setup.SwaggerEndpoint($"{ (!string.IsNullOrEmpty(pathBase) ? pathBase : string.Empty) }/swagger/v1/swagger.json", "TaxaDeJuros.Api V1");
-                   setup.OAuthClientId("taxadejurosswaggerui");
                    setup.OAuthAppName("Taxa de Juros Swagger UI");
                });
 
             app.UseRouting();
             app.UseCors("CorsPolicy");
-
-            app.UseStaticFiles();
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<TaxaDeJurosService>();
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
                 endpoints.MapGet("/_proto/", async ctx =>
@@ -119,6 +85,7 @@ namespace TaxaDeJuros.Api
                         }
                     }
                 });
+                endpoints.MapGrpcService<TaxaDeJurosService>();
                 endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
                 {
                     Predicate = _ => true,
@@ -134,11 +101,62 @@ namespace TaxaDeJuros.Api
 
     public static class CustomExtensionMethods
     {
+
+        public static IServiceCollection AddCustomMVC(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+                options.Filters.Add(typeof(ValidateModelStateFilter));
+
+            })
+            .AddApplicationPart(typeof(TaxaDeJurosController).Assembly)
+            .AddNewtonsoftJson();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection AddCustomOptions(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddOptions();
+
+            services.Configure<TaxaDeJurosSettings>(configuration);
+
+            return services;
+        }
+
+        public static IServiceCollection AddSwagger(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "softplayer mÃ£o na massa - Taxa de Juros HTTP API",
+                    Version = "v1",
+                    Description = "ServiÃ§o para Taxa de Juros em HTTP API"
+                });
+            });
+
+            return services;
+
+        }
+
         public static IServiceCollection AddCustomHealthCheck(this IServiceCollection services, IConfiguration configuration)
         {
             var hcBuilder = services.AddHealthChecks();
 
-            hcBuilder.AddCheck("self", () => HealthCheckResult.Healthy());
+            hcBuilder
+                .AddCheck("self", () => HealthCheckResult.Healthy());
 
             return services;
         }
