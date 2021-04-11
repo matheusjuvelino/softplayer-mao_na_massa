@@ -14,3 +14,12 @@ services:
       dockerfile: Services/Juros/CalcularJuros/CalcularJuros.Api/Dockerfile
     depends_on:
       - taxa-de-juros-api
+
+  webstatus:
+    image: webstatus:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Web/WebStatus/Dockerfile
+    depends_on:
+      - taxa-de-juros-api
+      - calcular-juros-api
