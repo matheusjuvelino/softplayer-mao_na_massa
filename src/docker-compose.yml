@@ -1,0 +1,16 @@
+version: "3.4"
+
+services:
+  taxa-de-juros-api:
+    image: taxa-de-juros.api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Juros/TaxaDeJuros/TaxaDeJuros.Api/Dockerfile
+
+  calcular-juros-api:
+    image: calcular-juros.api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Juros/CalcularJuros/CalcularJuros.Api/Dockerfile
+    depends_on:
+      - taxa-de-juros-api
